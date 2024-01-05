@@ -24,11 +24,13 @@ class MainActivity : ComponentActivity() {
                 val screenState = viewModel.state.collectAsState()
                 when (val currentState = screenState.value) {
                     is TerminalScreenState.Content -> {
-                        Log.d("MainActivityTest", currentState.results.toString())
+                        Terminal(bars = currentState.results)
                     }
                     is TerminalScreenState.Initial -> {
 
                     }
+
+                    else -> {}
                 }
             }
         }
