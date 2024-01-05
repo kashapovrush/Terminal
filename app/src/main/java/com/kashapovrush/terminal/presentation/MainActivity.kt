@@ -20,18 +20,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TerminalTheme {
-                val viewModel: MainViewModel = viewModel()
-                val screenState = viewModel.state.collectAsState()
-                when (val currentState = screenState.value) {
-                    is TerminalScreenState.Content -> {
-                        Terminal(bars = currentState.results)
-                    }
-                    is TerminalScreenState.Initial -> {
-
-                    }
-
-                    else -> {}
-                }
+                Terminal()
             }
         }
     }

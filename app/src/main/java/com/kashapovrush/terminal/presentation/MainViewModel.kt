@@ -24,10 +24,11 @@ class MainViewModel: ViewModel() {
         loadBars()
     }
 
-    private fun loadBars() {
+    fun loadBars(timeFrame: TimeFrame = TimeFrame.HOUR_1) {
+        _state.value = TerminalScreenState.Loading
         viewModelScope.launch(exceptionHandler) {
-            val results = apiService.loadBar().results
-            _state.value = TerminalScreenState.Content(results = results)
+            val results = apiService.loadBar(timeFrame.value).results
+            _state.value = TerminalScreenState.Content(results = results, timeFrame)
         }
     }
 }
